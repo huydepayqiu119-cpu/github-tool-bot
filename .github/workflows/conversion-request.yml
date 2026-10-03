@@ -348,7 +348,7 @@ jobs:
           token: ${{ secrets.TOOLS_PAT }}
           fetch-depth: 1
       - name: Install NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 24
       - name: Cache tools node_modules
@@ -425,7 +425,7 @@ jobs:
           token: ${{ secrets.TOOLS_PAT }}
           fetch-depth: 1
       - name: Install NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 24
       - name: Download pack artifact
@@ -503,7 +503,7 @@ jobs:
           token: ${{ secrets.TOOLS_PAT }}
           fetch-depth: 1
       - name: Install NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 24
       - name: Download pack artifact
@@ -604,7 +604,7 @@ jobs:
           path: staging/default_assets.zip
           key: ${{ runner.os }}-default-assets-${{ needs.get-pack-info.outputs.default_assets_version }}
       - name: Install NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 24
       - name: Install Python
@@ -819,7 +819,7 @@ jobs:
             If you believe this is an issue with the converter. please open a bug report. This issue will be closed automatically.
 
             [1]: https://github.com/huydepayqiu119-cpu/-dd-idOIADJsoiadsaiudojas/actions/runs/${{ github.run_id}}
-          reactions: 'x'
+          reactions: '-1'
       - name: Close issue
         uses: peter-evans/close-issue@v3
         with:
