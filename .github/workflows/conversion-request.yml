@@ -774,6 +774,32 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Check if Error artifact already exists
+        id: check-error-artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            const errorArtifact = artifacts.data.artifacts.find(
+              a => a.name === `Error-${context.issue.number}`
+            );
+            core.setOutput('exists', errorArtifact ? 'true' : 'false');
+      - name: Create Error artifact
+        if: steps.check-error-artifact.outputs.exists == 'false'
+        run: |
+          mkdir -p error_out
+          printf '{"error":true,"message":"Ticket #${{ github.event.issue.number }} - xử lý thất bại"}' > error_out/error_info.json
+      - name: Upload Error artifact
+        if: steps.check-error-artifact.outputs.exists == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Error-${{ github.event.issue.number }}
+          path: error_out/error_info.json
+          retention-days: 1
       - name: Post Result
         id: post-result
         uses: peter-evans/create-or-update-comment@v4
