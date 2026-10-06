@@ -684,7 +684,6 @@ jobs:
           mkdir -p staging/animations
           cp animations/anim_2d.py staging/animations/
           cp animations/anim_3d.py staging/animations/
-          cp animations/anim_armor.py staging/animations/
           mkdir -p staging/tools
           cp -r tools/* staging/tools/
           cp -r util staging/util/
