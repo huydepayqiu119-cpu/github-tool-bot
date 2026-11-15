@@ -4,6 +4,8 @@ on:
     types:
       - labeled
 
+cache-mode: write
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -604,7 +606,6 @@ jobs:
         with:
           path: staging/default_assets.zip
           key: ${{ runner.os }}-default-assets-${{ needs.get-pack-info.outputs.default_assets_version }}
-          cache-mode: write
       - name: Install NodeJS
         uses: actions/setup-node@v5
         with:
